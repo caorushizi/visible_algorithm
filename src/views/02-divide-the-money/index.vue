@@ -10,22 +10,18 @@
 </template>
 
 <script>
-import AlgoCanvas from "@/components/AlgoCanvas";
 import utils from "@/assets/script/utils";
+import mixins from "@/mixins";
+
 export default {
   name: "divide-the-money",
-  components: { AlgoCanvas },
+  mixins: [mixins],
   data() {
     return {
       canvasWidth: 800,
       canvasHeight: 500,
       money: []
     };
-  },
-  computed: {
-    canvas() {
-      return this.$refs.canvas;
-    }
   },
   methods: {
     init() {
@@ -69,15 +65,6 @@ export default {
       this.money.sort(utils.compareFn);
       this.timer = requestAnimationFrame(() => this.run());
     }
-  },
-  mounted() {
-    // 初始化
-    this.init();
-    // 开始运行
-    this.run();
-  },
-  beforeDestroy() {
-    cancelAnimationFrame(this.timer);
   }
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="start-with-canvas">
     <h1>开始使用 canvas</h1>
     <AlgoCanvas
       ref="canvas"
@@ -12,14 +12,12 @@
 </template>
 
 <script>
-import AlgoCanvas from "@/components/AlgoCanvas";
 import circle from "./circle";
 import mixins from "@/mixins";
 import utils from "@/assets/script/utils";
 
 export default {
-  name: "about",
-  components: { AlgoCanvas },
+  name: "start-with-canvas",
   mixins: [mixins],
   data() {
     return {
@@ -28,11 +26,6 @@ export default {
       circles: [],
       animated: true
     };
-  },
-  computed: {
-    canvas() {
-      return this.$refs.canvas;
-    }
   },
   methods: {
     init() {
@@ -78,15 +71,6 @@ export default {
         }
       });
     }
-  },
-  mounted() {
-    // 初始化
-    this.init();
-    // 开始运行
-    this.run();
-  },
-  beforeDestroy() {
-    cancelAnimationFrame(this.timer);
   }
 };
 </script>

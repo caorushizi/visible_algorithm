@@ -13,11 +13,11 @@
 <script>
 import circle from "./circle";
 import utils from "@/assets/script/utils";
-import AlgoCanvas from "@/components/AlgoCanvas";
+import mixins from "@/mixins";
 
 export default {
-  name: "index",
-  components: { AlgoCanvas },
+  name: "monte-carlo-method",
+  mixins: [mixins],
   data() {
     return {
       canvasWidth: 500,
@@ -27,11 +27,6 @@ export default {
       insideCount: 0,
       pi: 0
     };
-  },
-  computed: {
-    canvas() {
-      return this.$refs.canvas;
-    }
   },
   methods: {
     init() {
@@ -75,13 +70,6 @@ export default {
 
       this.timer = requestAnimationFrame(() => this.run());
     }
-  },
-  mounted() {
-    this.init();
-    this.run();
-  },
-  beforeDestroy() {
-    cancelAnimationFrame(this.timer);
   }
 };
 </script>
