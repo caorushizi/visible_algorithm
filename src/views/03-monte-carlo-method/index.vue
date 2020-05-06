@@ -37,6 +37,7 @@ export default {
       );
     },
     run() {
+      this.canvas.clearCanvas();
       // 绘制数据
       this.canvas.setStrokeColor(this.canvas.colors.blue);
       this.canvas.strokeCircle(this.circle.x, this.circle.y, this.circle.r);

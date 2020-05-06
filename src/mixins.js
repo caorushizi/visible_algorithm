@@ -7,6 +7,15 @@ export default {
       return this.$refs.canvas;
     }
   },
+  methods: {
+    sleep(time) {
+      return new Promise(resolve => {
+        this.timer = setTimeout(() => {
+          resolve();
+        }, time);
+      });
+    }
+  },
   mounted() {
     this.init();
     this.run();
@@ -14,6 +23,7 @@ export default {
   },
   beforeDestroy() {
     cancelAnimationFrame(this.timer);
+    clearInterval(this.timer);
     document.removeEventListener("keypress", this.keypress);
   }
 };

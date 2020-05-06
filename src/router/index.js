@@ -35,11 +35,20 @@ const routes = [
         /* webpackChunkName: "03-monte-carlo-method" */
         "@/views/03-monte-carlo-method"
       )
+  },
+  {
+    path: "/04-selection-sort",
+    name: "04",
+    component: () =>
+      import(
+        /* webpackChunkName: "04-selection-sort" */
+        "@/views/04-selection-sort"
+      )
   }
 ];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: "hash",
   base: process.env.BASE_URL,
   routes
 });
