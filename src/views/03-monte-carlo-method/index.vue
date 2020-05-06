@@ -39,7 +39,6 @@ export default {
     run() {
       // 绘制数据
       this.canvas.setStrokeColor(this.canvas.colors.blue);
-      this.canvas.setStrokeWidth(3);
       this.canvas.strokeCircle(this.circle.x, this.circle.y, this.circle.r);
       for (let i = 0; i < this.points.length; i++) {
         const point = this.points[i];
@@ -48,7 +47,7 @@ export default {
         } else {
           this.canvas.setFillColor(this.canvas.colors.green);
         }
-        this.canvas.fillCircle(point.x, point.y, 3);
+        this.canvas.fillCircle(point.x, point.y, 2);
       }
 
       // 更新数据
