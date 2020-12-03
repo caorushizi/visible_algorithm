@@ -1,6 +1,6 @@
 <template>
-  <div class="selection-sort">
-    <h1>选择排序法</h1>
+  <div class="05-insertion-sort-page">
+    <h1>插入排序法</h1>
     <AlgoCanvas
       ref="canvas"
       :height="canvasHeight"
@@ -11,10 +11,10 @@
 
 <script>
 import mixins from "../../mixins";
-import SelectionSortData from "./selection-sort-data";
+import InsertionSortData from "./insertion-sort-data";
 
 export default {
-  name: "index",
+  name: "05InsertionSort",
   mixins: [mixins],
   data() {
     return {
@@ -24,16 +24,15 @@ export default {
     };
   },
   methods: {
-    async _setData(orderedIndex, currentCompareIndex, currentMinIndex) {
+    async _setData(orderedIndex, currentIndex) {
       this.dataObject.orderedIndex = orderedIndex;
-      this.dataObject.currentCompareIndex = currentCompareIndex;
-      this.dataObject.currentMinIndex = currentMinIndex;
+      this.dataObject.currentIndex = currentIndex;
 
       await this.sleep(10);
       this.timer && this.paint();
     },
     init() {
-      this.dataObject = new SelectionSortData(100, this.canvasHeight);
+      this.dataObject = new InsertionSortData(100, this.canvasHeight);
     },
     paint() {
       this.canvas.clearCanvas();
@@ -46,12 +45,8 @@ export default {
           this.canvas.setFillColor(this.canvas.colors.gery);
         }
 
-        if (i === this.dataObject.currentCompareIndex) {
+        if (i === this.dataObject.currentIndex) {
           this.canvas.setFillColor(this.canvas.colors.blue);
-        }
-
-        if (i === this.dataObject.currentMinIndex) {
-          this.canvas.setFillColor(this.canvas.colors.green);
         }
 
         this.canvas.fillRectangle(
@@ -63,24 +58,21 @@ export default {
       }
     },
     async run() {
-      await this._setData(0, -1, -1);
-
-      // 更新数据
+      await this._setData(0, -1);
       for (let i = 0; i < this.dataObject.N; i++) {
-        let minIndex = i;
-        await this._setData(i, -1, minIndex);
-        for (let j = i + 1; j < this.dataObject.N; j++) {
-          await this._setData(i, j, minIndex);
-          if (this.dataObject.get(j) < this.dataObject.get(minIndex)) {
-            minIndex = j;
-            await this._setData(i, j, minIndex);
-          }
+        await this._setData(i, i);
+        for (
+          let j = i;
+          j > 0 && this.dataObject.get(j) < this.dataObject.get(j - 1);
+          j--
+        ) {
+          this.dataObject.swap(j, j - 1);
+          await this._setData(i + 1, j - 1);
         }
-        this.dataObject.swap(i, minIndex);
-        await this._setData(i + 1, -1, -1);
       }
+      await this._setData(this.dataObject.N, -1);
 
-      await this._setData(0, -1, -1);
+      this.paint();
     }
   }
 };

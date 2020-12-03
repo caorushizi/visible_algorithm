@@ -1,0 +1,33 @@
+<template>
+<div class="{{name}}-page">
+  <h1>{{description}}</h1>
+  <AlgoCanvas
+      ref="canvas"
+      :height="canvasHeight"
+      :width="canvasWidth"
+  ></AlgoCanvas>
+</div>
+</template>
+
+<script>
+import mixins from "../../mixins";
+
+export default {
+  name: "{{ properCase name }}",
+  mixins: [mixins],
+  data() {
+    return {
+      canvasHeight: 500,
+      canvasWidth: 800,
+      dataObject: null
+    };
+  },
+  methods: {
+    init() {},
+    paint() {},
+    async run() {}
+  }
+};
+</script>
+
+<style scoped lang="scss"></style>

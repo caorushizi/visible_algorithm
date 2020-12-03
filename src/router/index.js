@@ -44,6 +44,15 @@ const routes = [
         /* webpackChunkName: "04-selection-sort" */
         "@/views/04-selection-sort"
       )
+  },
+  {
+    path: "/05-insertion-sort",
+    name: "05",
+    component: () =>
+      import(
+        /* webpackChunkName: "05-insertion-sort" */
+        "@/views/05-insertion-sort"
+      )
   }
 ];
 

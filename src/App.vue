@@ -14,6 +14,9 @@
       <router-link class="view-page" tag="div" to="/04-selection-sort">
         选择排序法
       </router-link>
+      <router-link class="view-page" tag="div" to="/05-insertion-sort">
+        插入排序法
+      </router-link>
     </aside>
     <router-view class="main-wrapper" />
   </div>
